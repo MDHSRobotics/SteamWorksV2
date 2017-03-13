@@ -34,8 +34,7 @@ public class ToggleOrientationCommand extends MDCommand {
 	
 	@Override
 	protected void execute() {
-		
-			driveSystem.flip();
+		driveSystem.flip();
 		
 	}
 	

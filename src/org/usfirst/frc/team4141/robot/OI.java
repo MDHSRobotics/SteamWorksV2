@@ -6,7 +6,10 @@ import org.usfirst.frc.team4141.MDRobotBase.MDJoystick;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.OIBase;
 import org.usfirst.frc.team4141.robot.commands.ClearSettingsCommand;
-import org.usfirst.frc.team4141.robot.commands.DistanceDetectionCommand;
+import org.usfirst.frc.team4141.robot.commands.MDPrintCommand;
+import org.usfirst.frc.team4141.robot.commands.Pos1GearToggleCommand;
+import org.usfirst.frc.team4141.robot.commands.Pos2GearToggleCommand;
+import org.usfirst.frc.team4141.robot.commands.PushGearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.ResetGyroCommand;
 //import org.usfirst.frc.team4141.robot.commands.OpenDoorCommand;
 import org.usfirst.frc.team4141.robot.commands.RopeRiseCommand;
@@ -83,9 +86,8 @@ public class OI extends OIBase{
 				.whileHeld("RB",6,new ShootCommand(getRobot(), "ShootCommand")
 				.whenPressed("start",10,new StopShootSystemCommand(getRobot(),"StopShootSystemCommand"))
 				.configure());
-			*/
+*/
 			
-				
 			// Joystick Config: EXTREME 360 Pro and NES Controller
 			// -------------------------------------------------
 			//Joystick Buttons
@@ -104,7 +106,7 @@ public class OI extends OIBase{
 
 			.configure());
 
-		//fgjldjgsl
+		//NES Controller
 		add(new MDJoystick(getRobot(), "buttonJoystick", 1)
 		.whileHeld("A",2,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 		.configure());
@@ -116,24 +118,27 @@ public class OI extends OIBase{
 //			.configure()
 //		);
 		
-		
-		
 		//Configure the MDConsole OI here		
 		add(new ConsoleOI(getRobot())
-//				.whenPressed("whenPressed",0,new MDPrintCommand(getRobot(),"whenPressed","whenPressed..."))
-//				.whileHeld("whileHeld",3,new MDPrintCommand(getRobot(),"whileHeld","whileHeld..."))
+				.whenPressed("Toggle Gear: Pos. 1",15, new Pos1GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+				.whenPressed("Toggle Gear: Pos. 2",14, new Pos2GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+				.whenPressed("Toggle Gear: Push",13, new PushGearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+				.whenPressed("--------------",12, new MDPrintCommand(getRobot(), "Separator", ""))
+				.whenPressed("Reset Gyro",6,new ResetGyroCommand(getRobot(),"resetGyro"))
+				.whenPressed("Switch Cameras",8,new SwitchChannelCommand(getRobot(), "SwitchChannelCommand"))
+				.whenPressed("Clear Settings",10,new ClearSettingsCommand(getRobot(), "ClearSettingsCommand"))
+				// ------------------------------------------------------------------------------------------- //
+				//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))
+				//.whileHeld("Talon Held",7,new TalonDriveCommand(getRobot(), "TalonDriveCommand"))
+				//.whileHeld("Distance While Held",9,new DistanceDetectionCommand(getRobot(), "DistanceDetectionCommand"))
+				//.whenPressed("Shift Gear",10,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
+				//.whenPressed("whenPressed",0,new MDPrintCommand(getRobot(),"whenPressed","whenPressed..."))
+				//.whileHeld("whileHeld",3,new MDPrintCommand(getRobot(),"whileHeld","whileHeld..."))
 				//.whenPressed("Auto: Move from Wall",1,new AUTOMoveFromWall(getRobot()))
 				//.whenPressed("Auto 2: Distance Detection",2,new AUTODistanceDetection(getRobot()))
 				//.whileHeld("Rope Rise",3,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 				//.whenPressed("Rumble Test",4,new RumbleCommand(getRobot(),"rumble"))
 				//.whenPressed("Flip Orientation",5,new ToggleOrientationCommand(getRobot(),"consoleOrientationToggler"))
-				.whenPressed("Reset Gyro",6,new ResetGyroCommand(getRobot(),"resetGyro"))
-				//.whileHeld("Talon Held",7,new TalonDriveCommand(getRobot(), "TalonDriveCommand"))
-				//.whileHeld("Distance While Held",9,new DistanceDetectionCommand(getRobot(), "DistanceDetectionCommand"))
-				//.whenPressed("Shift Gear",10,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
-				.whenPressed("Switch Cameras",8,new SwitchChannelCommand(getRobot(), "SwitchChannelCommand"))
-				//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))
-				.whenPressed("Clear Settings",10,new ClearSettingsCommand(getRobot(), "ClearSettingsCommand"))
 				.configure()
 			);		
 		

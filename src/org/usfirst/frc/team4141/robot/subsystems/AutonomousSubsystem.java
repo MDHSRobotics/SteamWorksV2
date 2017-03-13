@@ -8,7 +8,7 @@ public class AutonomousSubsystem extends MDSubsystem {
 
 	private double auto1Speed;
 	private long auto1Duration;
-	
+	// ----------------------------- //
 	private double auto2Distance;
 	
 	public AutonomousSubsystem(MDRobotBase robot, String name) {
@@ -23,7 +23,6 @@ public class AutonomousSubsystem extends MDSubsystem {
 		// TODO Auto-generated method stub
 		if(getConfigSettings().containsKey("auto1Speed")) auto1Speed = getConfigSettings().get("auto1Speed").getDouble();
 		if(getConfigSettings().containsKey("auto1Duration")) auto1Duration = (long) (getConfigSettings().get("auto1Duration").getDouble()*1000);
-
 		if(getConfigSettings().containsKey("auto2Distance")) auto2Distance = getConfigSettings().get("auto2Distance").getDouble();
 	}
 
@@ -32,7 +31,6 @@ public class AutonomousSubsystem extends MDSubsystem {
 		// TODO Auto-generated method stub
 		if(changedSetting.getName().equals("auto1Speed")) auto1Speed = changedSetting.getDouble();
 		if(changedSetting.getName().equals("auto1Duration")) auto1Duration = (long) (changedSetting.getDouble()*1000);
-
 		if(changedSetting.getName().equals("auto2Distance")) auto2Distance = changedSetting.getDouble();
 	}
 

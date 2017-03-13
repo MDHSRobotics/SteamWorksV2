@@ -44,12 +44,11 @@ public class MDDriveSubsystem extends MDSubsystem {
 	private long gyroResetDuration = 150;
 	private double speed = 0;
 	//private boolean isHighGear = false;
-	public static String shiftSolenoid = "shiftSolenoid";
-	public static String shiftSolenoid1 = "shiftSolenoid1";
-	private Solenoid shifter;
-	private Solenoid shifter1;
+	public static String rightShiftSolenoidName = "rightShiftSolenoid";
+	public static String leftShiftSolenoidName = "leftShiftSolenoid";
+	private Solenoid rightShiftSolenoid;
+	private Solenoid leftShiftSolenoid;
 	private MD_IMU imu;
-	private DualDistanceSensor distanceSensor;
 	private ShiftGearSensor shiftGearSensor; 
 	
 	
@@ -106,27 +105,22 @@ public class MDDriveSubsystem extends MDSubsystem {
 			}
 			
 			if(getSolenoids()==null 
-					|| !getSolenoids().containsKey(shiftSolenoid) || !(getSolenoids().get(shiftSolenoid) instanceof Solenoid)) {
+					|| !getSolenoids().containsKey(rightShiftSolenoidName) || !(getSolenoids().get(rightShiftSolenoidName) instanceof Solenoid)) {
 					throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing shift solenoid.");
 			}	
-			shifter=(Solenoid) getSolenoids().get(shiftSolenoid);
+			rightShiftSolenoid=(Solenoid) getSolenoids().get(rightShiftSolenoidName);
 
 			if(getSolenoids()==null 
-					|| !getSolenoids().containsKey(shiftSolenoid1) || !(getSolenoids().get(shiftSolenoid1) instanceof Solenoid)) {
+					|| !getSolenoids().containsKey(leftShiftSolenoidName) || !(getSolenoids().get(leftShiftSolenoidName) instanceof Solenoid)) {
 					throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing shift solenoid1.");
 			}	
-			shifter1=(Solenoid) getSolenoids().get(shiftSolenoid1);
+			leftShiftSolenoid=(Solenoid) getSolenoids().get(leftShiftSolenoidName);
 			
 			if(getSensors()==null && !getSensors().containsKey("IMU")){
 				throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing IMU.");
 			}
 		    imu=(MD_IMU) getSensors().get("IMU");
 		    gyroReset();
-		    
-		    if(getSensors()==null && !getSensors().containsKey("dualDistance")){
-				throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing Dual Distance Sensors.");
-			}
-		    distanceSensor=(DualDistanceSensor) getSensors().get("dualDistance");
 		    if(getSensors()==null && !getSensors().containsKey("High Gear")){
 				throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing Gear Shift Sensors.");
 			}
@@ -312,8 +306,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 	public void shift() {
 		stop();
 		shiftGearSensor.set(!shiftGearSensor.get());
-		shifter.set(shiftGearSensor.get());
-		shifter1.set(shiftGearSensor.get());
+		rightShiftSolenoid.set(shiftGearSensor.get());
+		leftShiftSolenoid.set(shiftGearSensor.get());
 		debug("shifted to " + (shiftGearSensor.get()?"high gear" : "low gear"));
 		
 	}
@@ -326,19 +320,6 @@ public class MDDriveSubsystem extends MDSubsystem {
 		
 		return imu.getAngleZ();
 	}
-	
-	public double getDistance() {
-		SensorReading[] readings = distanceSensor.getReadings();
-		String s = new String();
-		for (int i = 0; i < readings.length; i++){ //initiation, change, and condition
-			if (i!= 0){
-				s += "\t";
-			}
-			s += ("Distance["+i+"]="+((AnalogSensorReading)(readings[i])).getValue());
-		}
-		debug(s);
-		return ((AnalogSensorReading)(readings[0])).getValue();
-	}
 
 	public void gyroReset() {
 		imu.reset();
@@ -349,21 +330,9 @@ public class MDDriveSubsystem extends MDSubsystem {
 	public void gyroRefresh() {
 		imu.refresh();
 	}
-	public void distanceRefresh() {
-		distanceSensor.refresh();
-	}
+
 	
 	boolean isOn = false;
-	public void toggleLight(){
-		if(getSensors()==null && !getSensors().containsKey("dualDistance")) return;
-		isOn=!isOn;
-		distanceSensor.setStatusLed(isOn);
-	}
-	public void setLight(boolean lightState){
-		if(getSensors()==null && !getSensors().containsKey("dualDistance")) return;
-		isOn=lightState;
-		distanceSensor.setStatusLed(isOn);
-	}	
 	
 	public void move(double speed, double angle) {
 		if(speed == 0) {stop();return;}
