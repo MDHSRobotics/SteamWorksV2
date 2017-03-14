@@ -14,6 +14,8 @@ public class ClearSettingsCommand extends MDCommand {
 		super(robot, name);
 	}
 
+	// ------------------------------------------------ //
+	
 	@Override
 	protected void initialize() {
 	}

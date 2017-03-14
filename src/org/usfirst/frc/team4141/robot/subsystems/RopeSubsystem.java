@@ -9,10 +9,10 @@ import edu.wpi.first.wpilibj.SpeedController;
 public class RopeSubsystem extends MDSubsystem {
 	
 	private double liftSpeed=0.2;
-	
 	private SpeedController ropeController;
-	
 	public static String motorName="ropeMotor";
+
+	// ------------------------------------------------ //
 
 	public MDSubsystem configure(){
 		super.configure();
@@ -30,6 +30,8 @@ public class RopeSubsystem extends MDSubsystem {
 		// TODO Auto-generated constructor stub
 	}
 	
+	// ------------------------------------------------ //
+
 	public void move(){
 		//positive speed=wind
 		//negative speed=unwind
@@ -41,6 +43,8 @@ public class RopeSubsystem extends MDSubsystem {
 		
 	}
 	
+	// ------------------------------------------------ //
+
 	@Override
 	protected void setUp() {
 		

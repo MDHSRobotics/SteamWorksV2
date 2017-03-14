@@ -22,6 +22,7 @@ public class HolySeeSubsystem extends MDSubsystem{
 	public HolySeeSubsystem(MDRobotBase robot, String name) {
 		super(robot, name);
 	}
+	
 	public MDSubsystem configure(){
 		super.configure();
 
@@ -42,6 +43,9 @@ public class HolySeeSubsystem extends MDSubsystem{
 		tegraConnection = (TegraConnectionSensor)(getSensors().get("tegra"));
 		return this;
 	}
+	
+	// ------------------------------------------------ //
+	
 	@Override
 	protected void initDefaultCommand() {
 	}
@@ -58,6 +62,8 @@ public class HolySeeSubsystem extends MDSubsystem{
 		debug("switching channel\n");
 		getRobot().post(new SwitchChannelNotification(getRobot()));
 	}
+	
+	// ------------------------------------------------ //
 
 	public boolean getVisionConnected(){
 		return visionConnected.get();
@@ -79,18 +85,24 @@ public class HolySeeSubsystem extends MDSubsystem{
 		return tegraConnection.get();
 	}
 
+	// ------------------------------------------------ //
+	
 	public void setVisionConnected(boolean connected){
 		visionConnected.set(connected);
 	}
+	
 	public void setSteamTargetAcquired(boolean targetAcquired){
 		steamTargetAcquired.set(targetAcquired);
 	}
+	
 	public void setGearTargetAcquired(boolean targetAcquired){
 		gearTargetAcquired.set(targetAcquired);
 	}
+	
 	public void setConsoleAddress(String consoleAddress){
 		consoleConnection.set(consoleAddress);
 	}
+	
 	public void setTegraAddress(String tegraAddress){
 		tegraConnection.set(tegraAddress);
 	}

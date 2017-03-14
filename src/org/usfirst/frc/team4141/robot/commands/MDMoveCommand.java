@@ -8,14 +8,18 @@ import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
 public class MDMoveCommand extends MDCommand {
-	// The purpoise of this command is to do basic motion testing
-	// four directions are defined, see Direction enum
-	// the duration is defaulted to 3 seconds
-	// speed is defaulted to 0.5
+	
+	/* 
+	   The purpose of this command is to do basic motion testing
+	   four directions are defined, see Direction enum
+	   the duration is defaulted to 3 seconds
+	   speed is defaulted to 0.5 */
+	
 	private double duration = 3000; //3 seconds in milliseconds
 	private double speed = 0.2;
-	
-	
+	private Direction direction;
+	private long start;
+	private MDDriveSubsystem driveSystem;
 	public enum Direction{
 		left,
 		reverse,
@@ -23,18 +27,15 @@ public class MDMoveCommand extends MDCommand {
 		forward
 	}
 
-	private Direction direction;
-	private long start;
-	private MDDriveSubsystem driveSystem;
-	
-
-
+	// ------------------------------------------------ //
 
 	public MDMoveCommand(MDRobotBase robot, String name, Direction direction) {
 		super(robot,name);
 		this.direction = direction;
 	}
 
+	// ------------------------------------------------ //
+	
 	public Direction getDirection() {
 		return direction;
 	}
@@ -42,6 +43,8 @@ public class MDMoveCommand extends MDCommand {
 	public void setDirection(Direction direction) {
 		this.direction = direction;
 	}
+	
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {
@@ -74,6 +77,7 @@ public class MDMoveCommand extends MDCommand {
 			driveSystem.forward(speed);
 		}
 	}
+	
 	@Override
 	protected void end() {
 		driveSystem.stop();

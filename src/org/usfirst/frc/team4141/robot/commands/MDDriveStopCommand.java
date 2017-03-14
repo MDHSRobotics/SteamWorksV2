@@ -9,8 +9,10 @@ import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
 public class MDDriveStopCommand extends MDCommand {
+	
 	private MDDriveSubsystem driveSystem;
-
+	
+	// ------------------------------------------------ //
 
 	public MDDriveStopCommand(MDRobotBase robot, String name) {
 		super(robot, name);
@@ -21,6 +23,8 @@ public class MDDriveStopCommand extends MDCommand {
 		driveSystem = (MDDriveSubsystem)getRobot().getSubsystems().get("driveSystem"); 
 		requires(driveSystem);
 	}
+	
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 public class GearSubsystem extends MDSubsystem {
 
+	//--------------------------------------------------------//
+	
 	public enum Element {
 		pos1Solenoid,
 		pos2Solenoid,
@@ -84,6 +86,8 @@ public class GearSubsystem extends MDSubsystem {
 		state=State.start;
 		
 	}
+	
+	//--------------------------------------------------------//
 	
 	public void set(Element solenoid, boolean position){
 		switch(solenoid){

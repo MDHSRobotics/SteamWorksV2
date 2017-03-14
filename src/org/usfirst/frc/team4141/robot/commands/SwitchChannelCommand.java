@@ -7,7 +7,9 @@ import org.usfirst.frc.team4141.robot.subsystems.HolySeeSubsystem;
 
 public class SwitchChannelCommand extends MDCommand {
 	
+	private HolySeeSubsystem holyseeSubsystem;
 	
+	// ------------------------------------------------ //
 	
 	public SwitchChannelCommand(MDRobotBase robot, String name) {
 		super(robot, name);
@@ -19,8 +21,7 @@ public class SwitchChannelCommand extends MDCommand {
 		
 	}
 	
-	private HolySeeSubsystem holyseeSubsystem;
-
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

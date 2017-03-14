@@ -20,7 +20,11 @@ public class ToggleOrientationCommand extends MDCommand {
 		
 	}
 	
+	// ------------------------------------------------ //
+	
 	private MDDriveSubsystem driveSystem;
+	
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

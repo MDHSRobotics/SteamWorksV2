@@ -6,14 +6,17 @@ import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 
 public class MDPrintCommand extends MDCommand {
 	
-	
 	private String message;
 
+	// ------------------------------------------------ //
+	
 	public MDPrintCommand(MDRobotBase robot, String name, String message) {
 		super(robot,name);
 		this.setMessage(message);
 	}
 
+	// ------------------------------------------------ //
+	
 	public String getMessage() {
 		return message;
 	}

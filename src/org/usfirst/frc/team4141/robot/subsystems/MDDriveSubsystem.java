@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.SpeedController;
 
 
 public class MDDriveSubsystem extends MDSubsystem {
+	
 	public enum Type{
 		TankDrive,
 		MecanumDrive
@@ -36,22 +37,26 @@ public class MDDriveSubsystem extends MDSubsystem {
 		rearRight
 	}
 	
+	// ------------------------------------------------ //
+	
 	private RobotDrive robotDrive;
 	private Type type;
+ // private boolean isHighGear = false;
 	private boolean isFlipped = false;
 	private boolean resettingGyro = false;
 	private long gyroResetStart;
 	private long gyroResetDuration = 150;
 	private double speed = 0;
-	//private boolean isHighGear = false;
+	private double c = 1.0;
 	public static String rightShiftSolenoidName = "rightShiftSolenoid";
 	public static String leftShiftSolenoidName = "leftShiftSolenoid";
 	private Solenoid rightShiftSolenoid;
 	private Solenoid leftShiftSolenoid;
 	private MD_IMU imu;
 	private ShiftGearSensor shiftGearSensor; 
+	private TankDriveInterpolator interpolator = new TankDriveInterpolator();
 	
-	
+	// ------------------------------------------------ //
 	
 	public MDDriveSubsystem(MDRobotBase robot, String name, Type type) {
 		super(robot, name);
@@ -73,6 +78,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		super.add(name,sensor);
 		return this;
 	}
+	
+	// ------------------------------------------------ //
 	
 	public SpeedController get(MotorPosition position){
 		SpeedController motor = getMotors().get(position.toString());
@@ -142,7 +149,10 @@ public class MDDriveSubsystem extends MDSubsystem {
 		robotDrive.stopMotor();
 		return this;
 	}
-	public Type getType(){ return type;}
+	
+	public Type getType() { 
+		return type;
+	}
 
 	@Override
 	protected void initDefaultCommand() {
@@ -151,6 +161,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		//setDefaultCommand(new ArcadeDriveCommand(getRobot()));
 	}
 	
+	// ------------------------------------------------ //\
+
 	private double calculateMagnitude(double x,double y){
 		//joystick will give x & y in a range of -1 <= 0 <= 1
 		// the magnitude indicates how fast the robot shoudl be driving
@@ -185,33 +197,32 @@ public class MDDriveSubsystem extends MDSubsystem {
 	public void arcadeDrive(Joystick joystick) {
 		switch(type){
 		case MecanumDrive:
-//			System.out.println("mecanum...");
 			double magnitude= calculateMagnitude(joystick.getRawAxis(0),joystick.getRawAxis(1));
 			double direction = calculateDirection(-joystick.getRawAxis(0),-joystick.getRawAxis(1));
 			double rotation = joystick.getRawAxis(4);
 			robotDrive.mecanumDrive_Polar(magnitude, direction, rotation);
 			break;
 		default:
-//			  double rightTriggerValue = joystick.getRawAxis(3);
-//			  double leftTriggerValue = -joystick.getRawAxis(2);
-			  double forwardAxisValue = -joystick.getRawAxis(1);
-			  double forward = (forwardAxisValue)*(1.0-(1.0-c));
-		  	  double rotate = joystick.getRawAxis(2); //(Changed to accompass shifting w/controller and deadzoned)
-//	  	  debug("forward = " + forward + ", rotate = " + rotate);
-		  	  double[] speeds = interpolator.calculate(forward, rotate, isFlipped);
-		  	 // debug("left: "+speeds[0]+", right: "+speeds[1]);
-			  robotDrive.tankDrive(-speeds[0], -speeds[1]);
+		 // double rightTriggerValue = joystick.getRawAxis(3);
+		 //	double leftTriggerValue = -joystick.getRawAxis(2);
+			double forwardAxisValue = -joystick.getRawAxis(1);
+			double forward = (forwardAxisValue)*(1.0-(1.0-c));
+		  	double rotate = joystick.getRawAxis(2); //(Changed to accompass shifting w/controller and deadzoned)
+	  	 // debug("forward = " + forward + ", rotate = " + rotate);
+		  	double[] speeds = interpolator.calculate(forward, rotate, isFlipped);
+		 // debug("left: "+speeds[0]+", right: "+speeds[1]);
+			robotDrive.tankDrive(-speeds[0], -speeds[1]);
 		}
 	}
 	
+	// ------------------------------------------------ //
+
 	public void stop(){
 		debug("motors stopped");
 		robotDrive.stopMotor();
 		speed = 0;
 	}	
 	
-	private double c = 1.0;
-	private TankDriveInterpolator interpolator = new TankDriveInterpolator();
 	@Override
 	protected void setUp() {
 		//called after configuration is completed
@@ -219,6 +230,7 @@ public class MDDriveSubsystem extends MDSubsystem {
 		if(getConfigSettings().containsKey("a")) interpolator.setA(getConfigSettings().get("a").getDouble());
 		if(getConfigSettings().containsKey("b")) interpolator.setB(getConfigSettings().get("b").getDouble());
 	}
+	
 	@Override
 	public void settingChangeListener(ConfigSetting changedSetting) {
 		if(changedSetting.getName().equals("c")) c = changedSetting.getDouble();
@@ -226,6 +238,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		if(changedSetting.getName().equals("b")) interpolator.setB(changedSetting.getDouble());
 		//method to listen to setting changes
 	}
+
+	// ------------------------------------------------ //
 
 	public void right(double speed) {
 		this.speed = speed;
@@ -296,6 +310,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		}
 	}
 	
+	// ------------------------------------------------ //
+
 	public void flip() {
 		
 		if (speed != 0) return;
@@ -311,6 +327,7 @@ public class MDDriveSubsystem extends MDSubsystem {
 		debug("shifted to " + (shiftGearSensor.get()?"high gear" : "low gear"));
 		
 	}
+	
 	public double getAngle() {
 		if (resettingGyro) { 
 			long now = (new Date()).getTime();
@@ -320,6 +337,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		
 		return imu.getAngleZ();
 	}
+
+	// ------------------------------------------------ //
 
 	public void gyroReset() {
 		imu.reset();
@@ -331,9 +350,6 @@ public class MDDriveSubsystem extends MDSubsystem {
 		imu.refresh();
 	}
 
-	
-	boolean isOn = false;
-	
 	public void move(double speed, double angle) {
 		if(speed == 0) {stop();return;}
 //		double correction = angle/180.00;
@@ -352,6 +368,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 		}
 		robotDrive.tankDrive(speeds[0], speeds[1]);
 	}
+
+	boolean isOn = false; // Why is this here? What is this? It doesn't link to anything.
 
 }
 

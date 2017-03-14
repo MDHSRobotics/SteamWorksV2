@@ -1,16 +1,11 @@
 package org.usfirst.frc.team4141.robot.commands;
 
-//REMEMBER TO TEST CODE
-
 import org.usfirst.frc.team4141.MDRobotBase.MDCommand;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
-
 public class ResetGyroCommand extends MDCommand {
-	
-	
 	
 	public ResetGyroCommand(MDRobotBase robot, String name) {
 		super(robot, name);
@@ -23,8 +18,11 @@ public class ResetGyroCommand extends MDCommand {
 		// TODO Auto-generated constructor stub
 	}
 	
+	// ------------------------------------------------ //
+	
 	private MDDriveSubsystem driveSystem;
 
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

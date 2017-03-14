@@ -43,4 +43,5 @@ public class CoreSubsystem extends MDSubsystem {
 			getRobot().setName(changedSetting.getString());
 		}	
 	}
+
 }

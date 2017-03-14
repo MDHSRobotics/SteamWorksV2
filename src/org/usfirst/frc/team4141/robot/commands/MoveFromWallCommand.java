@@ -16,8 +16,11 @@ public class MoveFromWallCommand extends MDCommand {
 	private long autoDuration;
 	private double setAngle;
 	private double actualAngle;
-	private double driveAngle;    //driveAngle = setAngle - actualAngle
+	private double driveAngle;    
+	private AutonomousSubsystem autoSubsystem;
+	private MDDriveSubsystem driveSubsystem;
 	
+	// ------------------------------------------------ //
 	
 	public MoveFromWallCommand(MDRobotBase robot, String name) {
 		super(robot, name);
@@ -36,9 +39,8 @@ public class MoveFromWallCommand extends MDCommand {
 		
 		// TODO Auto-generated constructor stub
 	}
-
-	private AutonomousSubsystem autoSubsystem;
-	private MDDriveSubsystem driveSubsystem;
+	
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {
@@ -55,10 +57,11 @@ public class MoveFromWallCommand extends MDCommand {
 			long now = (new Date()).getTime();
 			return  (now >=(start+autoDuration));
 		}
+	
 	@Override
 	protected void execute() {
 		actualAngle = driveSubsystem.getAngle();
-		driveAngle = setAngle - actualAngle;
+		driveAngle = setAngle - actualAngle; //driveAngle = setAngle - actualAngle
 	  	log(Level.DEBUG,"execute","setAngle="+setAngle+", actualAngle="+actualAngle+", driveAngle="+driveAngle);
 
 		driveSubsystem.move(autoSpeed,driveAngle);

@@ -27,18 +27,18 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 	private EventManager eventManager;
 	private Notifier dispatcher;
 	private double updatePeriod = 0.1;  //0.1 seconds
-
-	public enum Remote{
+	
+	public enum Remote {
 		console,
 		tegra
 	}
+	
+	// ------------------------------------------------ //
 	
 	public WebSocketSubsystem(MDRobotBase robot, String name) {
 		super(robot, name);
 		setCore(true);
 	}
-	
-	
 
 	@Override
 	protected void initDefaultCommand() {
@@ -73,12 +73,12 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 		}
 	}
 
-	//
-    //EventManager helper methods
-	public void post(RobotNotification notification){
+	// ------------------------------------------------ //
+    
+	public void post(RobotNotification notification){ // EventManager Helper Methods
 		if(eventManager.isWebSocketsEnabled()){
 			eventManager.post(notification);
-		}
+		} 
 	}
 
 	@SuppressWarnings({"rawtypes" })
@@ -122,7 +122,7 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 		}
 	}
 
-
+	// ------------------------------------------------ //
 
 	private void identifyRemote(Request request, Map message) {
 		if(message.containsKey("id")){
@@ -155,8 +155,6 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 			}
 		}
 	}
-
-
 
 	@SuppressWarnings("rawtypes")
 	private void updateSetting(Map message) {
@@ -216,6 +214,8 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 		}
 	}
 
+	// ------------------------------------------------ //
+	
 	public MDRobotBase geRobot() {
 		
 		return getRobot();
@@ -237,11 +237,11 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 		}
 	}
 
+	// ------------------------------------------------ //
+	
 	@Override
 	public void connect(EventManagerWebSocket socket) {	
 	}
-
-
 
 	@Override
 	public void close(EventManagerWebSocket socket) {

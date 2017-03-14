@@ -13,7 +13,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class ShiftToggleCommand extends MDCommand {
 	
+	private MDDriveSubsystem driveSystem;
+	private long start;
+	private long shiftToggleDuration = 250;
 	
+	// ------------------------------------------------ //
 	
 	public ShiftToggleCommand(MDRobotBase robot, String name) {
 		super(robot, name);
@@ -27,11 +31,7 @@ public class ShiftToggleCommand extends MDCommand {
 		// TODO Auto-generated constructor stub
 	}
 	
-	private MDDriveSubsystem driveSystem;
-	private long start;
-	private long shiftToggleDuration = 250;
-
-
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

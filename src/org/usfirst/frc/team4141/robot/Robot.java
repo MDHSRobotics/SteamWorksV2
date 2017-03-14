@@ -1,4 +1,3 @@
-//error 404 not found
 package org.usfirst.frc.team4141.robot;
 
 import org.usfirst.frc.team4141.MDRobotBase.MDCommandGroup;
@@ -32,19 +31,10 @@ import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends MDRobotBase {
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
 
+	//--------------------------------------------------------//
+	
 	@Override
 	protected void configureRobot() {
 		
@@ -56,11 +46,10 @@ public class Robot extends MDRobotBase {
 				.add("High Gear", new ShiftGearSensor())
 				.add(MDDriveSubsystem.rightShiftSolenoidName, new Solenoid(0))
 				.add(MDDriveSubsystem.leftShiftSolenoidName, new Solenoid(1))
-				.add("a", new DoubleConfigSetting(0.0, 1.0, 0.25)) //high speed turn factor
-		 	    .add("b", new DoubleConfigSetting(0.0, 1.0, 0.4)) //slow speed turn factor
-				.add("c", new DoubleConfigSetting(0.0, 1.0, 1.0)) //speed governor
-				.configure()
-		);	
+				.add("a", new DoubleConfigSetting(0.0, 1.0, 0.25)) //High Speed - Turn Factor
+		 	    .add("b", new DoubleConfigSetting(0.0, 1.0, 0.4)) //Slow Speed - Turn Factor
+				.add("c", new DoubleConfigSetting(0.0, 1.0, 1.0)) //Speed Governor
+				.configure());	
 
 		add(new GearSubsystem(this, "gearSubsystem")
 				.add(GearSubsystem.Element.pos1Solenoid.toString(), new Solenoid(2))
@@ -78,9 +67,8 @@ public class Robot extends MDRobotBase {
 				.add("liftSpeed", new DoubleConfigSetting(-1.0, 1.0, 0.2))
 				.configure());
 		
-		
-		add(new RumbleSubsystem(this, "rumbleSubsystem")
-				.configure());
+//		add(new RumbleSubsystem(this, "rumbleSubsystem")
+//				.configure());
 		
 		add(new AutonomousSubsystem(this, "autoSubsystem")
 				.add("auto1Speed",new DoubleConfigSetting(-1.0, 1.0, -0.75))
@@ -101,23 +89,28 @@ public class Robot extends MDRobotBase {
 				 .configure()
 		);	
 	
+		//--------------------------------------------------------//
+		
 		setAutonomousCommand(new MDCommandGroup[]{
 				//new AUTOMoveFromWall(this),
 				//new AUTODistanceDetection(this)
-			}, "Auto1"  //specify the default
+			}, "Auto1"  // Default Autonomous Value
 		);
 	}
 	
+	// ------------------------------------------------ //
+	
 	@Override
 	public void teleopInit() {
-		super.teleopInit();   //ArcadeCommand started in super.teleopInit();
-		
+		super.teleopInit();   //ArcadeCommand started in super.teleopInit();	
 	} 
+	
 	@Override
 	public void autonomousInit() { 
 		super.autonomousInit();
 
 	} 	
+	
 	@Override
 	public void disabledPeriodic() {
 		super.disabledPeriodic();

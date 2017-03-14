@@ -9,6 +9,8 @@ public class RopeRiseCommand extends MDCommand {
 	
 	private RopeSubsystem ropeSubsystem;
 	
+	// ------------------------------------------------ //
+	
 	public RopeRiseCommand(MDRobotBase robot, String name) {
 		super(robot, name);
 		if(!getRobot().getSubsystems().containsKey("ropeSubsystem")){
@@ -19,6 +21,8 @@ public class RopeRiseCommand extends MDCommand {
 		requires(ropeSubsystem);
 	}
 
+	// ------------------------------------------------ //
+	
 	protected void initialize() {
 		}
 	

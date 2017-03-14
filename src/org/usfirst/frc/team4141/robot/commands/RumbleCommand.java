@@ -7,10 +7,14 @@ import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.RumbleSubsystem;
 
-
-
 public class RumbleCommand extends MDCommand {
 
+	private RumbleSubsystem rumbleSubsystem;
+	private long start;
+	private long now;
+	
+	// ------------------------------------------------ //
+	
 	public RumbleCommand(MDRobotBase robot, String name) {
 		super(robot, name);
 		if(!getRobot().getSubsystems().containsKey("rumbleSubsystem")){
@@ -22,10 +26,7 @@ public class RumbleCommand extends MDCommand {
 		
 	}
 
-	
-	private RumbleSubsystem rumbleSubsystem;
-	private long start;
-	private long now;
+	// ------------------------------------------------ //
 	
 	@Override
 	protected void initialize() {

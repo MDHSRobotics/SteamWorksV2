@@ -9,7 +9,12 @@ import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
 
 public class ArcadeDriveCommand extends MDCommand {
+	
+	private MDJoystick joystick = null;
 	MDDriveSubsystem driveSys;
+	
+	// ------------------------------------------------ //
+
 	public ArcadeDriveCommand(MDRobotBase robot) {
 		super(robot,"ArcadeDriveCommand");
 		if(!getRobot().getSubsystems().containsKey("driveSystem")){
@@ -20,7 +25,8 @@ public class ArcadeDriveCommand extends MDCommand {
 		requires(driveSys);
     }
 	
-	private MDJoystick joystick = null;
+	// ------------------------------------------------ //
+	
 	@Override
 	protected void initialize() {
 		super.initialize();
