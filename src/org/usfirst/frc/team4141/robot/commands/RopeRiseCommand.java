@@ -31,7 +31,7 @@ public class RopeRiseCommand extends MDCommand {
 	}
 	
 	protected void execute() {
-		if (ropeSubsystem!=null)ropeSubsystem.move();
+		if (ropeSubsystem!=null)ropeSubsystem.raise();
 	}
 	
 	@Override

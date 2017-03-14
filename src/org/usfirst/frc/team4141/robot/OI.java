@@ -7,10 +7,12 @@ import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.OIBase;
 import org.usfirst.frc.team4141.robot.commands.ClearSettingsCommand;
 import org.usfirst.frc.team4141.robot.commands.MDPrintCommand;
+import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos1GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos2GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.PushGearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.ResetGyroCommand;
+import org.usfirst.frc.team4141.robot.commands.RopeLowerCommand;
 //import org.usfirst.frc.team4141.robot.commands.OpenDoorCommand;
 import org.usfirst.frc.team4141.robot.commands.RopeRiseCommand;
 import org.usfirst.frc.team4141.robot.commands.RumbleCommand;
@@ -135,6 +137,10 @@ public class OI extends OIBase{
 			.whenPressed("Reset Gyro",6,new ResetGyroCommand(getRobot(),"resetGyro"))
 			.whenPressed("Switch Cameras",8,new SwitchChannelCommand(getRobot(), "SwitchChannelCommand"))
 			.whenPressed("Clear Settings",10,new ClearSettingsCommand(getRobot(), "ClearSettingsCommand"))
+			.whenPressed("Next State",115,new NextGearStateCommand(getRobot(), "NextGearStateCommand"))
+			.whileHeld("Rope Rise",23,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+			.whileHeld("Rope Lower",24,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
+			
 			// ------------------------------------------------------------------------------------------- //
 			//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))
 			//.whileHeld("Talon Held",7,new TalonDriveCommand(getRobot(), "TalonDriveCommand"))

@@ -6,7 +6,6 @@ import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem.Element;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
-
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 public class PushGearToggleCommand extends MDCommand {

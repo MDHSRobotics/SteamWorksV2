@@ -59,14 +59,14 @@ public class DualDistanceSensor implements Sensor{
 		if(!i2cDevice.read(DATA_ADDRESS, DATA_SIZE, data)){
 			for(int i=0;i<DATA_SIZE/2;i++){
 				((AnalogSensorReading)readings[i]).setValue(data.getChar());
-				if(i>0) System.out.print("\t");
-				System.out.printf("%d", (int)(((AnalogSensorReading)readings[i]).getValue()));
+//				if(i>0) System.out.print("\t");
+//				System.out.printf("%d", (int)(((AnalogSensorReading)readings[i]).getValue()));
 			}
 		
 		}else{
 //			System.out.print("\tCould not read");
 		}
-		System.out.println();
+//		System.out.println();
 	}
 
 	@Override

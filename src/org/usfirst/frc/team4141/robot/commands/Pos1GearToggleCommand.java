@@ -17,7 +17,6 @@ public class Pos1GearToggleCommand extends MDCommand {
 
 	public Pos1GearToggleCommand(MDRobotBase robot, String name) {
 		super(robot, name);
-		// TODO Auto-generated constructor stub
 		if(!getRobot().getSubsystems().containsKey("gearSubsystem")){
 			log(Level.ERROR, "initialize()",  "Gear subsystem not found");
 			throw new IllegalArgumentException("Gear subsystem not found");

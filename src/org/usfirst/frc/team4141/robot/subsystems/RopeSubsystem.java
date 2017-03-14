@@ -11,31 +11,35 @@ public class RopeSubsystem extends MDSubsystem {
 	private double liftSpeed=0.2;
 	private SpeedController ropeController;
 	public static String motorName="ropeMotor";
-
+	
 	// ------------------------------------------------ //
 
 	public MDSubsystem configure(){
 		super.configure();
-
+		//setCore(true);
+		
 		if(getMotors()==null 
 				|| !getMotors().containsKey(motorName))
 			throw new IllegalArgumentException("Invalid motor configuration for rope system.");
 		ropeController = (SpeedController)(getMotors().get(motorName));
-		//setCore(true);
-		return this;
-	}
+	return this;
+}
 	
 	public RopeSubsystem(MDRobotBase robot, String name) {
 		super(robot, name);
-		// TODO Auto-generated constructor stub
 	}
 	
 	// ------------------------------------------------ //
 
-	public void move(){
+	public void raise(){
 		//positive speed=wind
 		//negative speed=unwind
 		ropeController.set(liftSpeed);
+	}
+	public void lower(){
+		//positive speed=wind
+		//negative speed=unwind
+		ropeController.set(-liftSpeed);
 	}
 		
 	public void stop(){
@@ -61,7 +65,6 @@ public class RopeSubsystem extends MDSubsystem {
 
 	@Override
 	protected void initDefaultCommand() {
-		// TODO Auto-generated method stub
 
 	}
 

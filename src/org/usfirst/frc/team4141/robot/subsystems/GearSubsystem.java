@@ -129,6 +129,7 @@ public class GearSubsystem extends MDSubsystem {
 		switch(state) {
 		// ------- //
 		case start:
+			debug("start");
 			if (hasGear()) {
 				setState(State.driveCarry);
 			} else {
@@ -136,15 +137,19 @@ public class GearSubsystem extends MDSubsystem {
 			}
 			break;
 		case preCollect:
+			debug("preCollect");
 			setState(State.driveCarry);
 			break;
 		case driveCarry:
+			debug("driveCarry");
 			setState(State.deliverApproach);
 			break;
 		case deliverApproach:
+			debug("deliverApproach");
 			setState(State.deliverGear);
 			break;
 		case deliverGear:
+			debug("deliverGear");
 			setState(State.preCollect);
 			break;
 		}
@@ -152,7 +157,8 @@ public class GearSubsystem extends MDSubsystem {
 	}
 	
 	public void setState(State newState){
-		switch(newState) {
+		this.state = newState;
+		switch(state) {
 		// ------- //
 		case start:
 			pos1Solenoid.set(false);

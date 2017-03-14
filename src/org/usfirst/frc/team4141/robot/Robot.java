@@ -18,6 +18,7 @@ import org.usfirst.frc.team4141.MDRobotBase.config.StringConfigSetting;
 import org.usfirst.frc.team4141.robot.subsystems.CoreSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.HolySeeSubsystem;
+import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.subsystems.AutonomousSubsystem;
 //import org.usfirst.frc.team4141.robot.subsystems.GearSubSystem;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
@@ -113,7 +114,17 @@ public class Robot extends MDRobotBase {
 	@Override
 	public void disabledPeriodic() {
 		super.disabledPeriodic();
+		
 
 	}
+	
+	@Override
+	public void robotInit() {
+		// TODO Auto-generated method stub
+		super.robotInit();
+		NextGearStateCommand nextGearStateCommand = new NextGearStateCommand(this,"nextGearStateCommand");
+		nextGearStateCommand.start();
+	}
+	
 
 }
