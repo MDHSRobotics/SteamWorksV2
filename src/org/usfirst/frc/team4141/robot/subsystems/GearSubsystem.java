@@ -97,7 +97,7 @@ public class GearSubsystem extends MDSubsystem {
 		break;
 		case pos2Solenoid: 
 			pos2SolenoidState = position;
-			pos2Solenoid.set(pushSolenoidState);
+			pos2Solenoid.set(pos2SolenoidState);
 		break;
 		case pushSolenoid: 
 			pushSolenoidState = position;
@@ -240,12 +240,8 @@ public class GearSubsystem extends MDSubsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-
-		// TODO Auto-generated method stub
-
+		
 	}
-
-	
 	
 }
 

@@ -85,7 +85,7 @@ public class Robot extends MDRobotBase {
 				.configure());
 		
 		add( new CoreSubsystem(this, "core")
-				 .add("name",new StringConfigSetting("MaterBot"))					//go ahead name your robot
+				 .add("name",new StringConfigSetting("MaterBot")) // Go ahead name your robot
 				 .configure()
 		);	
 	
@@ -108,7 +108,6 @@ public class Robot extends MDRobotBase {
 	@Override
 	public void autonomousInit() { 
 		super.autonomousInit();
-
 	} 	
 	
 	@Override

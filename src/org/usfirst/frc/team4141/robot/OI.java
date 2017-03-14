@@ -132,7 +132,6 @@ public class OI extends OIBase{
 			.whenPressed("Toggle Gear: Pos. 1",15, new Pos1GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
 			.whenPressed("Toggle Gear: Pos. 2",14, new Pos2GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
 			.whenPressed("Toggle Gear: Push",13, new PushGearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
-			.whenPressed("--------------",12, new MDPrintCommand(getRobot(), "Separator", ""))
 			.whenPressed("Reset Gyro",6,new ResetGyroCommand(getRobot(),"resetGyro"))
 			.whenPressed("Switch Cameras",8,new SwitchChannelCommand(getRobot(), "SwitchChannelCommand"))
 			.whenPressed("Clear Settings",10,new ClearSettingsCommand(getRobot(), "ClearSettingsCommand"))
