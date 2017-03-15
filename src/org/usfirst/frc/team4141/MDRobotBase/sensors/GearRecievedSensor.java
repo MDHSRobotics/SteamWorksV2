@@ -6,7 +6,7 @@ import org.usfirst.frc.team4141.MDRobotBase.MDSubsystem;
 
 import edu.wpi.first.wpilibj.I2C;
 
-public class DualDistanceSensor implements Sensor{
+public class GearRecievedSensor implements Sensor{
    private static final char LED_COMMAND = 'L';
    private static final char LED_ON = 'H';
    private static final char LED_OFF = 'L';
@@ -23,15 +23,15 @@ public class DualDistanceSensor implements Sensor{
 	private MDSubsystem subsystem;
 
 
-	public DualDistanceSensor(int address){
+	public GearRecievedSensor(int address){
 		this(null,address);
 	}
 	
-	public DualDistanceSensor(MDSubsystem subsystem, int address){
+	public GearRecievedSensor(MDSubsystem subsystem, int address){
 		this(null,address, true);
 	}
 	
-	public DualDistanceSensor(MDSubsystem subsystem, int address, boolean observe){
+	public GearRecievedSensor(MDSubsystem subsystem, int address, boolean observe){
 		this.observe = observe;
 		this.subsystem = subsystem;
 		i2cDevice=new I2C(I2C.Port.kOnboard, address);
@@ -56,14 +56,14 @@ public class DualDistanceSensor implements Sensor{
 		ByteBuffer data = ByteBuffer.allocateDirect(DATA_SIZE);//size of 2 char (e.g. 2 byte unsigned ints
 		  
 //		System.out.print("Reading i2c");
-		if(i2cDevice.read(DATA_ADDRESS, DATA_SIZE, data)){
+		if(!i2cDevice.read(DATA_ADDRESS, DATA_SIZE, data)){
 			for(int i=0;i<DATA_SIZE/2;i++){
 				((AnalogSensorReading)readings[i]).setValue(data.getChar());
 //				if(i>0) System.out.print("\t");
 //				System.out.printf("%d", (int)(((AnalogSensorReading)readings[i]).getValue()));
 			}
 		
-		} else {
+		}else{
 //			System.out.print("\tCould not read");
 		}
 //		System.out.println();

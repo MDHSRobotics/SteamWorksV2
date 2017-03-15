@@ -11,7 +11,6 @@ import org.usfirst.frc.team4141.MDRobotBase.sensors.SteamTargetSensor;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.TegraConnectionSensor;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.VisionConnectedSensor;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
-import org.usfirst.frc.team4141.MDRobotBase.config.ConfigSetting;
 import org.usfirst.frc.team4141.MDRobotBase.config.DoubleConfigSetting;
 import org.usfirst.frc.team4141.MDRobotBase.config.StringConfigSetting;
 //import org.usfirst.frc.team4141.robot.commands.SpinShootMotorCommand;
@@ -20,14 +19,12 @@ import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.HolySeeSubsystem;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.subsystems.AutonomousSubsystem;
+import org.usfirst.frc.team4141.robot.subsystems.BracketGearSubsystem;
 //import org.usfirst.frc.team4141.robot.subsystems.GearSubSystem;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem.MotorPosition;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem.Type;
 import org.usfirst.frc.team4141.robot.subsystems.RopeSubsystem;
-import org.usfirst.frc.team4141.robot.subsystems.RumbleSubsystem;
-
-import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
@@ -52,16 +49,25 @@ public class Robot extends MDRobotBase {
 				.add("c", new DoubleConfigSetting(0.0, 1.0, 1.0)) //Speed Governor
 				.configure());	
 
-		add(new GearSubsystem(this, "gearSubsystem")
-				.add(GearSubsystem.Element.pos1Solenoid.toString(), new Solenoid(2))
-				.add(GearSubsystem.Element.pos2Solenoid.toString(), new Solenoid(3))
-				.add(GearSubsystem.Element.pushSolenoid.toString(), new Solenoid(4))
-				.add("approachDistance", new DoubleConfigSetting(0.0, 24.0, 12.0))
+//		add(new GearSubsystem(this, "gearSubsystem")
+//				.add(GearSubsystem.Element.pos1Solenoid.toString(), new Solenoid(2))
+//				.add(GearSubsystem.Element.pos2Solenoid.toString(), new Solenoid(3))
+//				.add(GearSubsystem.Element.pushSolenoid.toString(), new Solenoid(4))
+//				.add("approachDistance", new DoubleConfigSetting(0.0, 24.0, 12.0))
+//				.add("deliveryDistance", new DoubleConfigSetting(0.0, 12.0, 6.0))
+//				.add("withdrawalDistance", new DoubleConfigSetting(24.0, 48.0, 36.0))
+//				.add("gearDetect", new DoubleConfigSetting(0.0, 12.0, 4.0))
+//				.add("dualDistanceSensor", new DualDistanceSensor(0x41))
+//				.configure());
+		
+		add(new BracketGearSubsystem(this, "bracketGearSubsystem")
+				.add(BracketGearSubsystem.Element.leftSolenoid.toString(), new Solenoid(2))
+				.add(BracketGearSubsystem.Element.rightSolenoid.toString(), new Solenoid(3))
 				.add("deliveryDistance", new DoubleConfigSetting(0.0, 12.0, 6.0))
 				.add("withdrawalDistance", new DoubleConfigSetting(24.0, 48.0, 36.0))
 				.add("gearDetect", new DoubleConfigSetting(0.0, 12.0, 4.0))
 				.add("dualDistanceSensor", new DualDistanceSensor(0x41))
-				.configure());
+				.configure());		
 
 		add(new RopeSubsystem(this, "ropeSubsystem")
 				.add(RopeSubsystem.motorName, new Victor(6))
@@ -114,16 +120,13 @@ public class Robot extends MDRobotBase {
 	@Override
 	public void disabledPeriodic() {
 		super.disabledPeriodic();
-		
-
 	}
 	
 	@Override
 	public void robotInit() {
-		// TODO Auto-generated method stub
 		super.robotInit();
-		NextGearStateCommand nextGearStateCommand = new NextGearStateCommand(this,"nextGearStateCommand");
-		nextGearStateCommand.start();
+//		NextGearStateCommand nextGearStateCommand = new NextGearStateCommand(this,"nextGearStateCommand");
+//		nextGearStateCommand.start();
 	}
 	
 

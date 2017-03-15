@@ -8,8 +8,9 @@ import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.AutonomousSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
+// TODO: Entire revamping. This is essentially a duplicate.
 
-public class GearMoniterCommand extends MDCommand {
+public class GearMonitorCommand extends MDCommand {
 
 	private long start;
 	private double autoSpeed;
@@ -22,7 +23,7 @@ public class GearMoniterCommand extends MDCommand {
 	
 	// ------------------------------------------------ //
 	
-	public GearMoniterCommand(MDRobotBase robot, String name) {
+	public GearMonitorCommand(MDRobotBase robot, String name) {
 		super(robot, name);
 		if(!getRobot().getSubsystems().containsKey("autoSubsystem")) {
 			log(Level.ERROR, "initialize()",  "Autonomous Subsystem not found");

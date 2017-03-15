@@ -5,9 +5,8 @@ import org.usfirst.frc.team4141.MDRobotBase.MDSubsystem;
 import org.usfirst.frc.team4141.MDRobotBase.config.ConfigSetting;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.AnalogSensorReading;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.DualDistanceSensor;
-
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
+
 
 public class GearSubsystem extends MDSubsystem {
 
@@ -114,7 +113,7 @@ public class GearSubsystem extends MDSubsystem {
 		break;
 		case pos2Solenoid: 
 			pos2SolenoidState = !pos2SolenoidState;
-			pos2Solenoid.set(pushSolenoidState);
+			pos2Solenoid.set(pos2SolenoidState);
 		break;
 		case pushSolenoid: 
 			pushSolenoidState = !pushSolenoidState;
@@ -229,7 +228,7 @@ public class GearSubsystem extends MDSubsystem {
 	protected void setUp() {
 		if(getConfigSettings().containsKey("approachDistance")) approachDistanceSetting = getConfigSettings().get("approachDistance").getDouble();
 		if(getConfigSettings().containsKey("deliveryDistance")) deliveryDistanceSetting = getConfigSettings().get("deliveryDistance").getDouble();
-		if(getConfigSettings().containsKey("deliveryDistance")) withdrawalDistanceSetting = getConfigSettings().get("withdrawalDistance").getDouble();
+		if(getConfigSettings().containsKey("withdrawalDistance")) withdrawalDistanceSetting = getConfigSettings().get("withdrawalDistance").getDouble();
 		if(getConfigSettings().containsKey("gearDetect")) gearDetectSetting = getConfigSettings().get("gearDetect").getDouble();
 
 		
@@ -239,7 +238,7 @@ public class GearSubsystem extends MDSubsystem {
 	public void settingChangeListener(ConfigSetting changedSetting) {
 		if(changedSetting.getName().equals("approachDistance")) approachDistanceSetting = changedSetting.getDouble();
 		if(changedSetting.getName().equals("deliveryDistance")) deliveryDistanceSetting = changedSetting.getDouble();
-		if(changedSetting.getName().equals("pushSolenoidState")) withdrawalDistanceSetting = changedSetting.getDouble();
+		if(changedSetting.getName().equals("withdrawalDistance")) withdrawalDistanceSetting = changedSetting.getDouble();
 		if(changedSetting.getName().equals("gearDetect")) gearDetectSetting = changedSetting.getDouble();
 
 	}

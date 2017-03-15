@@ -36,6 +36,7 @@ public class RopeSubsystem extends MDSubsystem {
 		//negative speed=unwind
 		ropeController.set(liftSpeed);
 	}
+	
 	public void lower(){
 		//positive speed=wind
 		//negative speed=unwind

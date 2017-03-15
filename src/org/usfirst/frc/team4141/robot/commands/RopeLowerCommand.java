@@ -35,7 +35,7 @@ public class RopeLowerCommand extends MDCommand {
 	}
 	
 	@Override
-		protected void end() {
+	protected void end() {
 			
 			ropeSubsystem.stop();
 			

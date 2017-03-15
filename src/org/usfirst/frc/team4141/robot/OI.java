@@ -90,7 +90,8 @@ public class OI extends OIBase{
 			
 			// Joystick Config: EXTREME 360 Pro
 			//-------------------------------------------------
-			.whileHeld("Button2",2,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+			.whileHeld("Button2",11,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+			.whileHeld("Button2",12,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
 			.whenPressed("Button3",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
 			.whenPressed("Button5",5,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
 /*			.whenPressed("Button12",12,new RumbleCommand(getRobot(), "RumbleCommand"))
