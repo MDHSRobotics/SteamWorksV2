@@ -6,6 +6,7 @@ import org.usfirst.frc.team4141.MDRobotBase.MDCommand;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.AutonomousSubsystem;
+import org.usfirst.frc.team4141.robot.subsystems.BracketGearSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
 
@@ -19,6 +20,7 @@ public class MoveFromWallCommand extends MDCommand {
 	private double driveAngle;    
 	private AutonomousSubsystem autoSubsystem;
 	private MDDriveSubsystem driveSubsystem;
+	private BracketGearSubsystem gearSubsystem;
 	
 	// ------------------------------------------------ //
 	
@@ -32,10 +34,15 @@ public class MoveFromWallCommand extends MDCommand {
 			log(Level.ERROR, "initialize()",  "Drive Subsystem not found");
 			throw new IllegalArgumentException("Drive Subsystem not found");
 		}
+		if(!getRobot().getSubsystems().containsKey("bracketGearSubsystem")) {
+			log(Level.ERROR, "initialize()",  "bracketGearSubsystem not found");
+			throw new IllegalArgumentException("bracketGearSubsystem not found");
+		}
 		autoSubsystem = (AutonomousSubsystem)getRobot().getSubsystems().get("autoSubsystem");
 		requires(autoSubsystem);
 		driveSubsystem = (MDDriveSubsystem)getRobot().getSubsystems().get("driveSystem");
 		requires(driveSubsystem);
+		gearSubsystem = (BracketGearSubsystem)getRobot().getSubsystems().get("bracketGearSubsystem");
 		
 		// TODO Auto-generated constructor stub
 	}
@@ -54,8 +61,9 @@ public class MoveFromWallCommand extends MDCommand {
 	
 	@Override
 	protected boolean isFinished() {
-			long now = (new Date()).getTime();
-			return  (now >=(start+autoDuration));
+		return gearSubsystem.getActualDistance()>gearSubsystem.getWithdrawalDistanceSetting();
+			//long now = (new Date()).getTime();
+			//return  (now >=(start+autoDuration));
 		}
 	
 	@Override

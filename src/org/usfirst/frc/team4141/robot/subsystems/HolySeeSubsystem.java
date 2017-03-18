@@ -1,5 +1,7 @@
 package org.usfirst.frc.team4141.robot.subsystems;
 
+import java.util.Date;
+
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.MDSubsystem;
 import org.usfirst.frc.team4141.MDRobotBase.config.ConfigSetting;
@@ -87,8 +89,15 @@ public class HolySeeSubsystem extends MDSubsystem{
 
 	// ------------------------------------------------ //
 	
+	private long start;
+	
 	public void setVisionConnected(boolean connected){
 		visionConnected.set(connected);
+		if (connected) {
+			start = (new Date()).getTime();
+		} else {
+			debug("connection closed after " + ((new Date()).getTime()-start));
+		}
 	}
 	
 	public void setSteamTargetAcquired(boolean targetAcquired){
