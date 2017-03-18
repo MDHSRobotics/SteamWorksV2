@@ -64,7 +64,7 @@ public class Robot extends MDRobotBase {
 				.add(BracketGearSubsystem.Element.leftSolenoid.toString(), new Solenoid(2))
 				.add(BracketGearSubsystem.Element.rightSolenoid.toString(), new Solenoid(3))
 				.add("deliveryDistance", new DoubleConfigSetting(0.0, 12.0, 6.0))
-				.add("withdrawalDistance", new DoubleConfigSetting(24.0, 48.0, 36.0))
+				.add("withdrawalDistance", new DoubleConfigSetting(200.0, 300.0, 250.0))
 				.add("gearDetect", new DoubleConfigSetting(0.0, 12.0, 4.0))
 				.add("dualDistanceSensor", new DualDistanceSensor(0x41))
 				.configure());		

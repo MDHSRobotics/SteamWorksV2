@@ -217,7 +217,6 @@ public class WebSocketSubsystem extends MDSubsystem implements MessageHandler{
 	// ------------------------------------------------ //
 	
 	public MDRobotBase geRobot() {
-		
 		return getRobot();
 	}
 	

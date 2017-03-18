@@ -31,6 +31,8 @@ public class MDDriveSubsystem extends MDSubsystem {
 	public enum MotorPosition{
 		left,
 		right,
+		secondRight,
+		secondLeft,
 		frontLeft,
 		rearLeft,
 		frontRight,

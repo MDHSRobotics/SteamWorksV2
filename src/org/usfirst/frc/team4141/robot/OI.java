@@ -7,6 +7,7 @@ import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.OIBase;
 import org.usfirst.frc.team4141.robot.commands.ClearSettingsCommand;
 import org.usfirst.frc.team4141.robot.commands.MDPrintCommand;
+import org.usfirst.frc.team4141.robot.commands.MoveFromWallCommand;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos1GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos2GearToggleCommand;
@@ -132,15 +133,16 @@ public class OI extends OIBase{
 		//Configure the MDConsole OI here
 		// ------------------------------------------------ //
 		add(new ConsoleOI(getRobot())
-			.whenPressed("Toggle Gear: Pos. 1",15, new Pos1GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
-			.whenPressed("Toggle Gear: Pos. 2",14, new Pos2GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
-			.whenPressed("Toggle Gear: Push",13, new PushGearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+			//.whenPressed("Toggle Gear: Pos. 1",15, new Pos1GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+			//.whenPressed("Toggle Gear: Pos. 2",14, new Pos2GearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
+			//.whenPressed("Toggle Gear: Push",13, new PushGearToggleCommand(getRobot(), "Pos1GearToggleCommand"))
 			.whenPressed("Reset Gyro",6,new ResetGyroCommand(getRobot(),"resetGyro"))
 			.whenPressed("Switch Cameras",8,new SwitchChannelCommand(getRobot(), "SwitchChannelCommand"))
 			.whenPressed("Clear Settings",10,new ClearSettingsCommand(getRobot(), "ClearSettingsCommand"))
 			.whenPressed("Next State",115,new NextGearStateCommand(getRobot(), "NextGearStateCommand"))
 			.whileHeld("Rope Rise",23,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 			.whileHeld("Rope Lower",24,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
+			.whenPressed("moveFromWall", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
 			
 			// ------------------------------------------------------------------------------------------- //
 			//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))

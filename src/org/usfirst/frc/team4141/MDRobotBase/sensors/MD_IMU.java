@@ -19,9 +19,9 @@ public class MD_IMU extends ADIS16448_IMU implements Sensor{
 		readings[i++]=new AnalogSensorReading(this,"AccelX", getAccelX(), true, false);
 		readings[i++]=new AnalogSensorReading(this,"AccelY", getAccelY(), true, false);
 		readings[i++]=new AnalogSensorReading(this,"AccelZ", getAccelZ(), true, false);
-		readings[i++]=new AnalogSensorReading(this,"Angle", getAngle(), false, false);
-		readings[i++]=new AnalogSensorReading(this,"AngleX", getAngleX(), true, false);
-		readings[i++]=new AnalogSensorReading(this,"AngleY", getAngleY(), true, false);
+		readings[i++]=new AnalogSensorReading(this,"Angle", getAngle(), true, true);
+		readings[i++]=new AnalogSensorReading(this,"AngleX", getAngleX(), true, true);
+		readings[i++]=new AnalogSensorReading(this,"AngleY", getAngleY(), true, true);
 		readings[i++]=new AnalogSensorReading(this,"AngleZ", getAngleZ());
 		readings[i++]=new AnalogSensorReading(this,"MagX", getMagX(), false, false);
 		readings[i++]=new AnalogSensorReading(this,"MagY", getMagY(), false, false);
