@@ -31,6 +31,9 @@ public class TankDriveInterpolator {
 	}
 	
 	public double[] calculate(double forward, double rotate, boolean isFlipped){
+		if (!isFlipped){
+			rotate = -rotate;
+		}
 		if (forward>=0) {
 			if (rotate>=0){
 				//Q1

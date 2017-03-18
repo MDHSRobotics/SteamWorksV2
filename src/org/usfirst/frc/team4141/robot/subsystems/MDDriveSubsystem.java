@@ -370,6 +370,15 @@ public class MDDriveSubsystem extends MDSubsystem {
 		}
 		robotDrive.tankDrive(speeds[0], speeds[1]);
 	}
+	//TODO 
+	public boolean isLowGear(){
+		if(shiftGearSensor.equals(false)){
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
 
 	boolean isOn = false; // Why is this here? What is this? It doesn't link to anything.
 
