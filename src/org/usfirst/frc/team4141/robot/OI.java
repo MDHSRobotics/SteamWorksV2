@@ -142,7 +142,8 @@ public class OI extends OIBase{
 			.whenPressed("Next State",115,new NextGearStateCommand(getRobot(), "NextGearStateCommand"))
 			.whileHeld("Rope Rise",23,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 			.whileHeld("Rope Lower",24,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
-			.whenPressed("moveFromWall", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
+			.whenPressed("Auto1", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
+			//.whenPressed("Auto2", 20, new PlaceGearCommand(getRobot(), "PlaceGearCommand"))
 			
 			// ------------------------------------------------------------------------------------------- //
 			//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))
