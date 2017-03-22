@@ -65,7 +65,7 @@ public class GearMonitorCommand extends MDCommand {
 		driveAngle = setAngle - actualAngle; //driveAngle = setAngle - actualAngle
 	  	log(Level.DEBUG,"execute","setAngle="+setAngle+", actualAngle="+actualAngle+", driveAngle="+driveAngle);
 
-		driveSubsystem.move(autoSpeed,driveAngle);
+		//driveSubsystem.move(autoSpeed,driveAngle);
 	}
 	
 	@Override

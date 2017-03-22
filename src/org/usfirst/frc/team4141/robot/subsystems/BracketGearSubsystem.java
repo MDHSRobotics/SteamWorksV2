@@ -202,7 +202,5 @@ public class BracketGearSubsystem extends MDSubsystem {
 	protected void initDefaultCommand() {
 		
 	}
-	
-
 }
 
