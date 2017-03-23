@@ -15,6 +15,8 @@ import org.usfirst.frc.team4141.MDRobotBase.sensors.Sensor;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.SensorReading;
 import org.usfirst.frc.team4141.MDRobotBase.sensors.ShiftGearSensor;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.PWM;
 import edu.wpi.first.wpilibj.RobotDrive;
@@ -58,6 +60,17 @@ public class MDDriveSubsystem extends MDSubsystem {
 	private ShiftGearSensor shiftGearSensor; 
 	private TankDriveInterpolator interpolator = new TankDriveInterpolator();
 	
+//	private double F=0.0;
+//	private double P=0.0;
+//	private double I=0.1;
+//	private double D=0.0;
+//	private double rpm=1.0;
+//	
+//	private CANTalon rearLeftTalon;
+//	private CANTalon rearRightTalon;
+//	private CANTalon frontLeftTalon;
+//	private CANTalon frontRightTalon;
+	
 	// ------------------------------------------------ //
 	
 	public MDDriveSubsystem(MDRobotBase robot, String name, Type type) {
@@ -66,7 +79,7 @@ public class MDDriveSubsystem extends MDSubsystem {
 	}
 	
 	public MDDriveSubsystem add(MotorPosition position,SpeedController speedController){
-		if(speedController instanceof PWM){
+		if(speedController instanceof PWM || speedController instanceof CANTalon){
 			super.add(position.toString(),(SpeedController)speedController);
 		}
 		else
@@ -134,6 +147,10 @@ public class MDDriveSubsystem extends MDSubsystem {
 				throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing Gear Shift Sensors.");
 			}
 		    shiftGearSensor=(ShiftGearSensor) getSensors().get("High Gear");
+//		    rearLeftTalon = (CANTalon)(getMotors().get(MotorPosition.rearLeft));
+//		    rearRightTalon = (CANTalon)(getMotors().get(MotorPosition.rearRight));
+//		    frontLeftTalon = (CANTalon)(getMotors().get(MotorPosition.frontLeft));
+//		    frontRightTalon = (CANTalon)(getMotors().get(MotorPosition.frontRight));
 			
 			
 			break;
@@ -231,6 +248,11 @@ public class MDDriveSubsystem extends MDSubsystem {
 		if(getConfigSettings().containsKey("c")) c = getConfigSettings().get("c").getDouble();
 		if(getConfigSettings().containsKey("a")) interpolator.setA(getConfigSettings().get("a").getDouble());
 		if(getConfigSettings().containsKey("b")) interpolator.setB(getConfigSettings().get("b").getDouble());
+//		if(getConfigSettings().containsKey("F")) F = getConfigSettings().get("F").getDouble();
+//		if(getConfigSettings().containsKey("P")) P = getConfigSettings().get("P").getDouble();
+//		if(getConfigSettings().containsKey("I")) I = getConfigSettings().get("I").getDouble();
+//		if(getConfigSettings().containsKey("D")) D = getConfigSettings().get("D").getDouble();
+//		if(getConfigSettings().containsKey("RPM")) rpm = getConfigSettings().get("RPM").getDouble();//*1000;
 	}
 	
 	@Override
@@ -238,6 +260,11 @@ public class MDDriveSubsystem extends MDSubsystem {
 		if(changedSetting.getName().equals("c")) c = changedSetting.getDouble();
 		if(changedSetting.getName().equals("a")) interpolator.setA(changedSetting.getDouble());
 		if(changedSetting.getName().equals("b")) interpolator.setB(changedSetting.getDouble());
+//		if(changedSetting.getName().equals("F")) F = changedSetting.getDouble();
+//		if(changedSetting.getName().equals("P")) P = changedSetting.getDouble()*pidFactor;
+//		if(changedSetting.getName().equals("I")) I = changedSetting.getDouble()*pidFactor;
+//		if(changedSetting.getName().equals("D")) D = changedSetting.getDouble()*pidFactor;
+//		if(changedSetting.getName().equals("RPM")) rpm = changedSetting.getDouble();//*1000;
 		//method to listen to setting changes
 	}
 
@@ -337,7 +364,7 @@ public class MDDriveSubsystem extends MDSubsystem {
 			else resettingGyro = false;
 		}
 		
-		return imu.getAngleZ();
+		return imu.getAngleX();
 	}
 
 	// ------------------------------------------------ //
@@ -347,24 +374,20 @@ public class MDDriveSubsystem extends MDSubsystem {
 		resettingGyro = true;
 	    gyroResetStart = (new Date()).getTime();
 	}
-	
-	public void gyroRefresh() {
-		imu.refresh();
-	}
 
 	public void move(double speed, double angle) {
 		if(speed == 0) {stop();return;}
-//		double correction = angle/180.00;
-//  	  		debug("speed = " + speed + ", angle = " + angle+ ", correction = "+correction+", isFlipped = "+ isFlipped);
-//	  	  double[] speeds = interpolator.calculate(speed, correction, isFlipped);
+		double correction = angle/180.00;
+  	  	debug("speed = " + speed + ", angle = " + angle+ ", correction = "+correction+", isFlipped = "+ isFlipped);
+	  	//double[] speeds = interpolator.calculate(speed, correction, isFlipped);
 		double[] speeds = new double[2];
 		if(angle>=0){
-			if(angle>20) angle = 20;
+			if(angle>10) angle = 10;
 			speeds[1]=speed;
 			speeds[0]=speed*(1.0 - angle/10.0);
 		}
 		else{
-			if(angle<-20) angle = -20;
+			if(angle<-10) angle = -10;
 			speeds[1]=speed*(1.0 + angle/10.0);
 			speeds[0]=speed;
 		}
@@ -374,13 +397,13 @@ public class MDDriveSubsystem extends MDSubsystem {
 	public boolean isLowGear(){
 		if(shiftGearSensor.equals(false)){
 			return true;
-		}else {
+		} else {
 			return false;
 		}
-		
 	}
 
-	boolean isOn = false; // Why is this here? What is this? It doesn't link to anything.
+	// boolean isOn = false; // Why is this here? What is this? It doesn't link to anything.;
+			
 
 }
 

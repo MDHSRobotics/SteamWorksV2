@@ -26,6 +26,8 @@ import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem.MotorPosition;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem.Type;
 import org.usfirst.frc.team4141.robot.subsystems.RopeSubsystem;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Victor;
 
@@ -39,6 +41,15 @@ public class Robot extends MDRobotBase {
 		add(new MDDriveSubsystem(this, "driveSystem", Type.TankDrive)
 				.add(MotorPosition.right, new Victor(0))
 				.add(MotorPosition.left, new Victor(1))
+//				.add(MotorPosition.frontLeft, new CANTalon(3))
+//				.add(MotorPosition.frontRight, new CANTalon(4))
+//				.add(MotorPosition.rearLeft, new CANTalon(5))
+//				.add(MotorPosition.rearRight, new CANTalon(6))
+//				.add("Drive-F", new DoubleConfigSetting(0.0, 1.0, 0.0))
+//		 	    .add("Drive-P", new DoubleConfigSetting(0.0, 1.0, 0.1))
+//				.add("Drive-I", new DoubleConfigSetting(0.0, 1.0, 0.8))
+//				.add("Drive-D", new DoubleConfigSetting(0.0, 1.0, 0.1))
+//				.add("Drive-RPM", new DoubleConfigSetting(0.0, 100.0, 10.0))
 				.add("accelerometer", new MD_BuiltInAccelerometer())
 				.add("IMU", new MD_IMU())
 				.add("High Gear", new ShiftGearSensor())
