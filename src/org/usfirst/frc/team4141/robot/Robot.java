@@ -91,7 +91,9 @@ public class Robot extends MDRobotBase {
 		add(new AutonomousSubsystem(this, "autoSubsystem")
 				.add("auto1Speed",new DoubleConfigSetting(-1.0, 1.0, -0.75))
 				.add("auto1Duration",new DoubleConfigSetting(0.0, 15.0, 2.0))
-				.add("auto2Distance",new DoubleConfigSetting(0.0, 18.0, 0.0))
+				.add("auto1Distance",new DoubleConfigSetting(0.0, 18.0, 0.0))
+				.add("gearStopDistance",new DoubleConfigSetting(0.0, 10.0, 5.0))
+				.add("gearBackupDistance",new DoubleConfigSetting(0.0, 200.0, 120.0))
 				.configure());
 		
 		add(new HolySeeSubsystem(this, "HolySeeSubsystem")

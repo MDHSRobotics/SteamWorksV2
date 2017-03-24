@@ -9,6 +9,7 @@ import org.usfirst.frc.team4141.robot.commands.ClearSettingsCommand;
 import org.usfirst.frc.team4141.robot.commands.MDPrintCommand;
 import org.usfirst.frc.team4141.robot.commands.MoveFromWallCommand;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
+import org.usfirst.frc.team4141.robot.commands.PlaceGearCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos1GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.Pos2GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.PushGearToggleCommand;
@@ -143,7 +144,7 @@ public class OI extends OIBase{
 			.whileHeld("Rope Rise",23,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 			.whileHeld("Rope Lower",24,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
 			.whenPressed("Auto1", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
-			//.whenPressed("Auto2", 20, new PlaceGearCommand(getRobot(), "PlaceGearCommand"))
+			.whenPressed("Auto2", 20, new PlaceGearCommand(getRobot(), "PlaceGearCommand", true))
 			
 			// ------------------------------------------------------------------------------------------- //
 			//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))
