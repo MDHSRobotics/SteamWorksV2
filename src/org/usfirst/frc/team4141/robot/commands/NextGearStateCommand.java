@@ -4,8 +4,6 @@ import org.usfirst.frc.team4141.MDRobotBase.MDCommand;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
 import org.usfirst.frc.team4141.robot.subsystems.BracketGearSubsystem;
-import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
-import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem.Element;
 
 public class NextGearStateCommand extends MDCommand {
 

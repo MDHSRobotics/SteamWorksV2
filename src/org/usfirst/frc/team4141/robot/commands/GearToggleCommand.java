@@ -3,26 +3,26 @@ package org.usfirst.frc.team4141.robot.commands;
 import org.usfirst.frc.team4141.MDRobotBase.MDCommand;
 import org.usfirst.frc.team4141.MDRobotBase.MDRobotBase;
 import org.usfirst.frc.team4141.MDRobotBase.eventmanager.LogNotification.Level;
-import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
-import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem.Element;
+import org.usfirst.frc.team4141.robot.subsystems.BracketGearSubsystem;
+import org.usfirst.frc.team4141.robot.subsystems.BracketGearSubsystem.Element;
 import org.usfirst.frc.team4141.robot.subsystems.MDDriveSubsystem;
 
 import edu.wpi.first.wpilibj.command.Scheduler;
 
-public class Pos1GearToggleCommand extends MDCommand {
+public class GearToggleCommand extends MDCommand {
 
-	private GearSubsystem gearSubsystem;
+	private BracketGearSubsystem bracketGearSubsystem;
 	
 	// ------------------------------------------------ //
 
-	public Pos1GearToggleCommand(MDRobotBase robot, String name) {
+	public GearToggleCommand(MDRobotBase robot, String name) {
 		super(robot, name);
-		if(!getRobot().getSubsystems().containsKey("gearSubsystem")){
+		if(!getRobot().getSubsystems().containsKey("bracketGearSubsystem")){
 			log(Level.ERROR, "initialize()",  "Gear subsystem not found");
 			throw new IllegalArgumentException("Gear subsystem not found");
 		}
-		gearSubsystem = (GearSubsystem)getRobot().getSubsystems().get("gearSubsystem"); 
-		requires(gearSubsystem);
+		bracketGearSubsystem = (BracketGearSubsystem)getRobot().getSubsystems().get("bracketGearSubsystem"); 
+		requires(bracketGearSubsystem);
 	}
 	
 	// ------------------------------------------------ //
@@ -39,7 +39,7 @@ public class Pos1GearToggleCommand extends MDCommand {
 	
 	@Override
 	protected void execute() {
-		gearSubsystem.toggle(Element.pos1Solenoid);
+		bracketGearSubsystem.toggle(Element.gearSolenoid);
 	}
 	
 	@Override

@@ -9,11 +9,9 @@ public class AUTOPlaceGear extends MDCommandGroup{
 		super(robot,"Auto2");
 		addSequential(new MDPrintCommand(getRobot(),"auto2-1","[AUTO] Place Gear: Begin"));
 		addSequential(new PlaceGearCommand(getRobot(), "Move To Gear Peg.",true));
-		addSequential(new Pos1GearToggleCommand(getRobot(), "Open Arms"));
-		addParallel(new Pos2GearToggleCommand(getRobot(), "Close Arms"));
+		addSequential(new GearToggleCommand(getRobot(), "Open Arms"));
 		addSequential(new PlaceGearCommand(getRobot(), "Move Away From Gear Peg.",false));
-		addSequential(new Pos1GearToggleCommand(getRobot(), "Open Arms"));
-		addParallel(new Pos2GearToggleCommand(getRobot(), "Close Arms"));
+		addSequential(new GearToggleCommand(getRobot(), "Open Arms"));
 		addSequential(new MDPrintCommand(getRobot(),"auto2-2","[AUTO] Place Gear: End"));
 	}
 

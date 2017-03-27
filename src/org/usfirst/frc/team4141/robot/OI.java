@@ -10,9 +10,7 @@ import org.usfirst.frc.team4141.robot.commands.MDPrintCommand;
 import org.usfirst.frc.team4141.robot.commands.MoveFromWallCommand;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.commands.PlaceGearCommand;
-import org.usfirst.frc.team4141.robot.commands.Pos1GearToggleCommand;
-import org.usfirst.frc.team4141.robot.commands.Pos2GearToggleCommand;
-import org.usfirst.frc.team4141.robot.commands.PushGearToggleCommand;
+import org.usfirst.frc.team4141.robot.commands.GearToggleCommand;
 import org.usfirst.frc.team4141.robot.commands.ResetGyroCommand;
 import org.usfirst.frc.team4141.robot.commands.RopeLowerCommand;
 //import org.usfirst.frc.team4141.robot.commands.OpenDoorCommand;
@@ -92,10 +90,11 @@ public class OI extends OIBase{
 			
 			// Joystick Config: EXTREME 360 Pro
 			//-------------------------------------------------
-			.whileHeld("Button2",11,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
-			.whileHeld("Button2",12,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
+			.whileHeld("Button11",11,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+			.whileHeld("Button12",12,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
 			.whenPressed("Button3",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
 			.whenPressed("Button5",5,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
+			.whenPressed("Button1",1,new GearToggleCommand(getRobot(), "GearToggleCommand"))
 /*			.whenPressed("Button12",12,new RumbleCommand(getRobot(), "RumbleCommand"))
 			.whileHeld("Button4",4,new TalonDriveCommand(getRobot(), "TalonCommand"))
 			.whenPressed("trigger",1,new StopBallsystemCommand(getRobot(), "StopBallsystemCommand"))			
@@ -118,9 +117,9 @@ public class OI extends OIBase{
 
 		// NES Controller
 		// ------------------------------------------------ //
-		add(new MDJoystick(getRobot(), "buttonJoystick", 1)
-			.whileHeld("A",2,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
-			.configure());
+		//add(new MDJoystick(getRobot(), "buttonJoystick", 1)
+			//.whileHeld("A",2,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+			//.configure());
 		
 		// Configure the RioHID here
 		// Uncomment the following to attach a command to the user button on the RoboRio
@@ -143,8 +142,8 @@ public class OI extends OIBase{
 			.whenPressed("Next State",115,new NextGearStateCommand(getRobot(), "NextGearStateCommand"))
 			.whileHeld("Rope Rise",23,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 			.whileHeld("Rope Lower",24,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
-			.whenPressed("Auto1", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
-			.whenPressed("Auto2", 20, new PlaceGearCommand(getRobot(), "PlaceGearCommand", true))
+			//.whenPressed("Auto1", 11, new MoveFromWallCommand(getRobot(), "MoveFromWallCommand"))
+			//.whenPressed("Auto2", 20, new PlaceGearCommand(getRobot(), "PlaceGearCommand", true))
 			
 			// ------------------------------------------------------------------------------------------- //
 			//.whenPressed("Toggle Light",11,new ToggleLightCommand(getRobot(), "ToggleLightCommand"))

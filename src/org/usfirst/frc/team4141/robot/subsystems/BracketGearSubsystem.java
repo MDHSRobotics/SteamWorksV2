@@ -12,23 +12,17 @@ public class BracketGearSubsystem extends MDSubsystem {
 	//--------------------------------------------------------//
 	
 	public enum Element {
-		leftSolenoid,
-		rightSolenoid
+		gearSolenoid
 	}
 	
 	public enum State {
-//		start,
-//		empty,
-		driveCarry,
-//		deliverApproach,
-		deliverGear
+		on,
+		off
 	}
 
-	private Solenoid leftSolenoid;
-	private Solenoid rightSolenoid;
+	private Solenoid gearSolenoid;
 
-	private boolean leftSolenoidState = false;
-	private boolean rightSolenoidState = false;
+	private boolean gearSolenoidState = false;
 	
 //	private double approachDistanceSetting = 0;
 	private double deliveryDistanceSetting = 0;
@@ -40,26 +34,17 @@ public class BracketGearSubsystem extends MDSubsystem {
 	private State state;
 	
 	//--------------------------------------------------------//
-	// Mr. Smith doesn't know C++. Lmao
 	
 	public MDSubsystem configure(){
 		super.configure();
 		
 		//--------------------------------------------------------//
-		
-		if(getSolenoids()==null 
-				|| !getSolenoids().containsKey(Element.leftSolenoid.toString()) || !(getSolenoids().get(Element.leftSolenoid.toString()) instanceof Solenoid)) {
-				throw new IllegalArgumentException("Invalid Gear Subsystem configuraton, missing pos1 solenoid.");
-		}	
-		leftSolenoid=(Solenoid) getSolenoids().get(Element.leftSolenoid.toString());
 
 		if(getSolenoids()==null 
-				|| !getSolenoids().containsKey(Element.rightSolenoid.toString()) || !(getSolenoids().get(Element.rightSolenoid.toString()) instanceof Solenoid)) {
+				|| !getSolenoids().containsKey(Element.gearSolenoid.toString()) || !(getSolenoids().get(Element.gearSolenoid.toString()) instanceof Solenoid)) {
 				throw new IllegalArgumentException("Invalid Gear Subsystem configuraton, missing pos2 solenoid.");
 		}	
-		rightSolenoid=(Solenoid) getSolenoids().get(Element.rightSolenoid.toString());
-
-		//setCore(true);
+		gearSolenoid=(Solenoid) getSolenoids().get(Element.gearSolenoid.toString());
 		
 	    if(getSensors()==null && !getSensors().containsKey("dualDistanceSensor")){
 			throw new IllegalArgumentException("Invalid gear subsystem configuraton, missing Dual Distance Sensors.");
@@ -73,60 +58,35 @@ public class BracketGearSubsystem extends MDSubsystem {
 	
 	public BracketGearSubsystem(MDRobotBase robot, String name) {
 		super(robot, name);
-		state=State.driveCarry;
+		state=State.on;
 		
 	}
 	
 	//--------------------------------------------------------//
 	
 	public void set(boolean position){
-		leftSolenoidState = position;
-		rightSolenoidState = position;
-		leftSolenoid.set(leftSolenoidState);
-		rightSolenoid.set(rightSolenoidState);
+		gearSolenoidState= position;
+		gearSolenoid.set(gearSolenoidState);
 	}
 	
 	public void toggle(Element solenoid) {
-		switch(solenoid){
-		case leftSolenoid: 
-			leftSolenoidState = !leftSolenoidState;
-			leftSolenoid.set(leftSolenoidState);
-		break;
-		case rightSolenoid: 
-			rightSolenoidState = !rightSolenoidState;
-			rightSolenoid.set(rightSolenoidState);
-		break;
+			gearSolenoidState = !gearSolenoidState;
+			gearSolenoid.set(gearSolenoidState);
+
 		};
-	}
 	
 	//--------------------------------------------------------//
 	
 	public void nextState(){
 		switch(state) {
 		// ------- //
-//		case start:
-//			debug("start");
-//			if (hasGear()) {
-//				setState(State.driveCarry);
-//			} else {
-//				setState(State.empty);
-//			}
-//			break;
-//		case empty:
-//			debug("empty");
-//			setState(State.driveCarry);
-//			break;
-		case driveCarry:
-			debug("driveCarry");
-			setState(State.deliverGear);
+		case on:
+			debug("on");
+			setState(State.off);
 			break;
-//		case deliverApproach:
-//			debug("deliverApproach");
-//			setState(State.deliverGear);
-//			break;
-		case deliverGear:
-			debug("deliverGear");
-			setState(State.driveCarry);
+		case off:
+			debug("off");
+			setState(State.on);
 			break;
 		}
 		
@@ -136,26 +96,11 @@ public class BracketGearSubsystem extends MDSubsystem {
 		this.state = newState;
 		switch(state) {
 		// ------- //
-//		case start:
-//			leftSolenoid.set(false);
-//			rightSolenoid.set(false);
-//			break;
-//		case empty:
-//			leftSolenoid.set(false);
-//			rightSolenoid.set(false);
-//			break;
-		case driveCarry:
-			leftSolenoid.set(false);
-			rightSolenoid.set(false);
+		case on:
+			gearSolenoid.set(true);
 			break;
-//		case deliverApproach:
-//			pos1Solenoid.set(false);
-//			pos2Solenoid.set(true);
-//			pushSolenoid.set(false);
-//			break;
-		case deliverGear:
-			leftSolenoid.set(true);
-			rightSolenoid.set(true);
+		case off:
+			gearSolenoid.set(false);
 			break;
 		}
 		

@@ -15,7 +15,6 @@ import org.usfirst.frc.team4141.MDRobotBase.config.DoubleConfigSetting;
 import org.usfirst.frc.team4141.MDRobotBase.config.StringConfigSetting;
 //import org.usfirst.frc.team4141.robot.commands.SpinShootMotorCommand;
 import org.usfirst.frc.team4141.robot.subsystems.CoreSubsystem;
-import org.usfirst.frc.team4141.robot.subsystems.GearSubsystem;
 import org.usfirst.frc.team4141.robot.subsystems.HolySeeSubsystem;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.subsystems.AutonomousSubsystem;
@@ -54,7 +53,7 @@ public class Robot extends MDRobotBase {
 				.add("IMU", new MD_IMU())
 				.add("High Gear", new ShiftGearSensor())
 				.add(MDDriveSubsystem.rightShiftSolenoidName, new Solenoid(0))
-				.add(MDDriveSubsystem.leftShiftSolenoidName, new Solenoid(1))
+//				.add(MDDriveSubsystem.leftShiftSolenoidName, new Solenoid(1))
 				.add("a", new DoubleConfigSetting(0.0, 1.0, 0.25)) //High Speed - Turn Factor
 		 	    .add("b", new DoubleConfigSetting(0.0, 1.0, 0.4)) //Slow Speed - Turn Factor
 				.add("c", new DoubleConfigSetting(0.0, 1.0, 1.0)) //Speed Governor
@@ -72,8 +71,7 @@ public class Robot extends MDRobotBase {
 //				.configure());
 		
 		add(new BracketGearSubsystem(this, "bracketGearSubsystem")
-				.add(BracketGearSubsystem.Element.leftSolenoid.toString(), new Solenoid(2))
-				.add(BracketGearSubsystem.Element.rightSolenoid.toString(), new Solenoid(3))
+				.add(BracketGearSubsystem.Element.gearSolenoid.toString(), new Solenoid(1))
 				.add("deliveryDistance", new DoubleConfigSetting(0.0, 12.0, 6.0))
 				.add("withdrawalDistance", new DoubleConfigSetting(200.0, 300.0, 250.0))
 				.add("gearDetect", new DoubleConfigSetting(0.0, 12.0, 4.0))

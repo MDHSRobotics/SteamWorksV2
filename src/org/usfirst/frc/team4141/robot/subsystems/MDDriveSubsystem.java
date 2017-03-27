@@ -53,9 +53,9 @@ public class MDDriveSubsystem extends MDSubsystem {
 	private double speed = 0;
 	private double c = 1.0;
 	public static String rightShiftSolenoidName = "rightShiftSolenoid";
-	public static String leftShiftSolenoidName = "leftShiftSolenoid";
+//	public static String leftShiftSolenoidName = "leftShiftSolenoid";
 	private Solenoid rightShiftSolenoid;
-	private Solenoid leftShiftSolenoid;
+//	private Solenoid leftShiftSolenoid;
 	private MD_IMU imu;
 	private ShiftGearSensor shiftGearSensor; 
 	private TankDriveInterpolator interpolator = new TankDriveInterpolator();
@@ -132,12 +132,12 @@ public class MDDriveSubsystem extends MDSubsystem {
 			}	
 			rightShiftSolenoid=(Solenoid) getSolenoids().get(rightShiftSolenoidName);
 
-			if(getSolenoids()==null 
-					|| !getSolenoids().containsKey(leftShiftSolenoidName) || !(getSolenoids().get(leftShiftSolenoidName) instanceof Solenoid)) {
-					throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing shift solenoid1.");
-			}	
-			leftShiftSolenoid=(Solenoid) getSolenoids().get(leftShiftSolenoidName);
-			
+//			if(getSolenoids()==null 
+//					|| !getSolenoids().containsKey(leftShiftSolenoidName) || !(getSolenoids().get(leftShiftSolenoidName) instanceof Solenoid)) {
+//					throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing shift solenoid1.");
+//			}	
+//			leftShiftSolenoid=(Solenoid) getSolenoids().get(leftShiftSolenoidName);
+//			
 			if(getSensors()==null && !getSensors().containsKey("IMU")){
 				throw new IllegalArgumentException("Invalid MDDriveSubsystem configuraton, missing IMU.");
 			}
@@ -352,7 +352,7 @@ public class MDDriveSubsystem extends MDSubsystem {
 		stop();
 		shiftGearSensor.set(!shiftGearSensor.get());
 		rightShiftSolenoid.set(shiftGearSensor.get());
-		leftShiftSolenoid.set(shiftGearSensor.get());
+//		leftShiftSolenoid.set(shiftGearSensor.get());
 		debug("shifted to " + (shiftGearSensor.get()?"high gear" : "low gear"));
 		
 	}
