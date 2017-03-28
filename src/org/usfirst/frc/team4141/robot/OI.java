@@ -11,6 +11,8 @@ import org.usfirst.frc.team4141.robot.commands.MoveFromWallCommand;
 import org.usfirst.frc.team4141.robot.commands.NextGearStateCommand;
 import org.usfirst.frc.team4141.robot.commands.PlaceGearCommand;
 import org.usfirst.frc.team4141.robot.commands.GearToggleCommand;
+import org.usfirst.frc.team4141.robot.commands.MDMoveCommand;
+import org.usfirst.frc.team4141.robot.commands.MDMoveCommand.Direction;
 import org.usfirst.frc.team4141.robot.commands.ResetGyroCommand;
 import org.usfirst.frc.team4141.robot.commands.RopeLowerCommand;
 //import org.usfirst.frc.team4141.robot.commands.OpenDoorCommand;
@@ -157,6 +159,8 @@ public class OI extends OIBase{
 			//.whileHeld("Rope Rise",3,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
 			//.whenPressed("Rumble Test",4,new RumbleCommand(getRobot(),"rumble"))
 			//.whenPressed("Flip Orientation",5,new ToggleOrientationCommand(getRobot(),"consoleOrientationToggler"))
+			.whenPressed("Forward",5,new MDMoveCommand(getRobot(),"move forward command",Direction.forward))
+			.whenPressed("Reverse",4,new MDMoveCommand(getRobot(),"move reverse command",Direction.reverse))
 			.configure()
 			);		
 		

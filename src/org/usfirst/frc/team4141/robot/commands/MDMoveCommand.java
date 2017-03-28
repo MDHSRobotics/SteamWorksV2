@@ -16,7 +16,7 @@ public class MDMoveCommand extends MDCommand {
 	   speed is defaulted to 0.5 */
 	
 	private double duration = 3000; //3 seconds in milliseconds
-	private double speed = 0.2;
+	private double speed = 0.6;
 	private Direction direction;
 	private long start;
 	private MDDriveSubsystem driveSystem;
