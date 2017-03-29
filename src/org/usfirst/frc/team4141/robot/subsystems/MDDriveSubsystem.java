@@ -226,10 +226,10 @@ public class MDDriveSubsystem extends MDSubsystem {
 		 //	double leftTriggerValue = -joystick.getRawAxis(2);
 			double forwardAxisValue = -joystick.getRawAxis(1);
 			double forward = (forwardAxisValue)*(1.0-(1.0-c));
-		  	double rotate = joystick.getRawAxis(2); //(Changed to accompass shifting w/controller and deadzoned)
-	  	 // debug("forward = " + forward + ", rotate = " + rotate);
+		  	double rotate = -joystick.getRawAxis(4); //(Changed to accompass shifting w/controller and deadzoned)
+	  	  debug("forward = " + forward + ", rotate = " + rotate);
 		  	double[] speeds = interpolator.calculate(forward, rotate, isFlipped);
-		    debug("left: "+speeds[0]+", right: "+speeds[1]);
+		    //debug("left: "+speeds[0]+", right: "+speeds[1]);
 			robotDrive.tankDrive(-speeds[0], -speeds[1]);
 		}
 	}
@@ -363,8 +363,9 @@ public class MDDriveSubsystem extends MDSubsystem {
 			if (now - gyroResetStart <= gyroResetDuration) return 0;
 			else resettingGyro = false;
 		}
-		
-		return imu.getAngleX();
+
+		return imu.getAngleZ();
+//		return imu.getAngleX();
 	}
 
 	// ------------------------------------------------ //

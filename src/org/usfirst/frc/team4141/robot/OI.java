@@ -77,26 +77,25 @@ public class OI extends OIBase{
 			.configure()
 			);
 */
-/*				
+				
 			//Controller Config: Logitech
-			//--------------------------------------------------
-			.whenPressed("A",2,new UnjamBallsystemCommand(getRobot(),"UnjamBallsystemCommand"))
-			.whenPressed("B",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
-			.whenPressed("X",1,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
-			.whenPressed("Y",4,new UnjamShootCommand(getRobot(),"UnjamShootCommand"))
+		  	//--------------------------------------------------
+//			.whenPressed("B",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
+			.whenPressed("A",1,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
 			.whileHeld("LB",5,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
-			.whileHeld("RB",6,new ShootCommand(getRobot(), "ShootCommand")
-			.whenPressed("start",10,new StopShootSystemCommand(getRobot(),"StopShootSystemCommand"))
+			.whileHeld("RB",6,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
+			.whenPressed("X",3,new GearToggleCommand(getRobot(), "GearToggleCommand"))
+			
 			.configure());
-*/
+
 			
 			// Joystick Config: EXTREME 360 Pro
 			//-------------------------------------------------
-			.whileHeld("Button11",11,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
-			.whileHeld("Button12",12,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
-			.whenPressed("Button3",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
-			.whenPressed("Button5",5,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
-			.whenPressed("Button1",1,new GearToggleCommand(getRobot(), "GearToggleCommand"))
+//			.whileHeld("Button11",11,new RopeRiseCommand(getRobot(), "RopeRiseCommand"))
+//			.whileHeld("Button12",12,new RopeLowerCommand(getRobot(), "RopeLowerCommand"))
+//			.whenPressed("Button3",3,new ShiftToggleCommand(getRobot(), "ShiftToggle"))
+//			.whenPressed("Button5",5,new ToggleOrientationCommand(getRobot(), "ToggleOrientationCommand"))
+//			.whenPressed("Button1",1,new GearToggleCommand(getRobot(), "GearToggleCommand"))
 /*			.whenPressed("Button12",12,new RumbleCommand(getRobot(), "RumbleCommand"))
 			.whileHeld("Button4",4,new TalonDriveCommand(getRobot(), "TalonCommand"))
 			.whenPressed("trigger",1,new StopBallsystemCommand(getRobot(), "StopBallsystemCommand"))			
@@ -114,7 +113,7 @@ public class OI extends OIBase{
 			.whenPressed(buttonName, buttonNumber, command)
 */				
 			
-			.configure());
+//			.configure());
 
 
 		// NES Controller

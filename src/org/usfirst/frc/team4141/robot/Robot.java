@@ -79,7 +79,7 @@ public class Robot extends MDRobotBase {
 				.configure());		
 
 		add(new RopeSubsystem(this, "ropeSubsystem")
-				.add(RopeSubsystem.motorName, new Victor(6))
+				.add(RopeSubsystem.motorName, new Victor(2))
 				.add("liftSpeed", new DoubleConfigSetting(-1.0, 1.0, 0.2))
 				.configure());
 		
