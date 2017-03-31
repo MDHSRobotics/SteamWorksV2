@@ -147,5 +147,19 @@ public class BracketGearSubsystem extends MDSubsystem {
 	protected void initDefaultCommand() {
 		
 	}
+//	public void distanceRefresh() {
+//		dualDistanceSensor.refresh();
+//	}
+//	boolean isOn = false;
+//	public void toggleLight(){
+//		if(getSensors()==null && !getSensors().containsKey("dualDistance")) return;
+//		isOn=!isOn;
+//		dualDistanceSensor.setStatusLed(isOn);
+//	}
+//	public void setLight(boolean lightState){
+//		if(getSensors()==null && !getSensors().containsKey("dualDistance")) return;
+//		isOn=lightState;
+//		dualDistanceSensor.setStatusLed(isOn);
+//	}	
 }
 
